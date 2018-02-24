@@ -40,7 +40,7 @@ Submit an [issue](https://github.com/jamrizzi/breeze-hacked-cursor-theme/issues/
 
 ## Screenshots
 
-![breeze-hacked-cursor-theme](https://user-images.githubusercontent.com/6234038/36633541-8db0d13a-198f-11e8-9da0-6e32a24715f0.jpg)
+![breeze-hacked-cursor-theme](https://user-images.githubusercontent.com/6234038/36633597-7dcf9e4e-1990-11e8-8d28-e0495db37c0e.png)
 
 
 ## Contributing
