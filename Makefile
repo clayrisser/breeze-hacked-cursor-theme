@@ -1,7 +1,7 @@
 CWD := $(shell pwd)
 
 .PHONY: all
-all: build
+all: clean build
 
 .PHONY: install
 install: build
@@ -18,4 +18,4 @@ build: Breeze_Hacked
 	@echo ::: CLEAN :::
 
 Breeze_Hacked:
-	@sh build.sh
+	@./build.sh
