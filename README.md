@@ -50,7 +50,7 @@ Review the [guidelines for contributing](https://github.com/jamrizzi/breeze-hack
 
 ## License
 
-[GPL 2.0](https://github.com/jamrizzi/breeze-hacked-cursor-theme/blob/master/LICENSE)
+[GPL 2.0 License](https://github.com/jamrizzi/breeze-hacked-cursor-theme/blob/master/LICENSE)
 
 
 ## Changelog
