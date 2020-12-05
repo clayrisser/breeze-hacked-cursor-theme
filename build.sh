@@ -59,11 +59,11 @@ for CUR in src/config/*.cursor; do
 	echo -ne "\033[0KGenerating simple cursor pixmaps... $BASENAME\\r"
 
 	if [ "$DIR1X/$BASENAME.png" -ot $RAWSVG ] ; then
-		inkscape -i $BASENAME -d 90  -f $RAWSVG -e "$DIR1X/$BASENAME.png" > /dev/null
+		inkscape $RAWSVG -i $BASENAME -d 90 --export-filename "$DIR1X/$BASENAME.png" > /dev/null
 	fi
 
 	if [ "$DIR2X/$BASENAME.png" -ot $RAWSVG ] ; then
-		inkscape -i $BASENAME -d 180 -f $RAWSVG -e "$DIR2X/$BASENAME.png" > /dev/null
+		inkscape $RAWSVG -i $BASENAME -d 180 --export-filename "$DIR2X/$BASENAME.png" > /dev/null
 	fi
 done
 echo -e "\033[0KGenerating simple cursor pixmaps... DONE"
@@ -75,19 +75,19 @@ do
 	echo -ne "\033[0KGenerating animated cursor pixmaps... $i / 23 \\r"
 
 	if [ "$DIR1X/progress-$i.png" -ot $RAWSVG ] ; then
-		inkscape -i progress-$i -d 90  -f $RAWSVG -e "$DIR1X/progress-$i.png" > /dev/null
+		inkscape $RAWSVG -i progress-$i -d 90 --export-filename "$DIR1X/progress-$i.png" > /dev/null
 	fi
 
 	if [ "$DIR2X/progress-$i.png" -ot $RAWSVG ] ; then
-		inkscape -i progress-$i -d 180 -f $RAWSVG -e "$DIR2X/progress-$i.png" > /dev/null
+		inkscape $RAWSVG -i progress-$i -d 180 --export-filename "$DIR2X/progress-$i.png" > /dev/null
 	fi
 
 	if [ "$DIR1X/wait-$i.png" -ot $RAWSVG ] ; then
-		inkscape -i wait-$i -d 90  -f $RAWSVG -e "$DIR1X/wait-$i.png" > /dev/null
+		inkscape $RAWSVG -i wait-$i -d 90 --export-filename "$DIR1X/wait-$i.png" > /dev/null
 	fi
 
 	if [ "$DIR2X/wait-$i.png" -ot $RAWSVG ] ; then
-		inkscape -i wait-$i -d 180 -f $RAWSVG -e "$DIR2X/wait-$i.png" > /dev/null
+		inkscape $RAWSVG -i wait-$i -d 180 --export-filename "$DIR2X/wait-$i.png" > /dev/null
 	fi
 done
 echo -e "\033[0KGenerating animated cursor pixmaps... DONE"
