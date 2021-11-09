@@ -48,7 +48,7 @@ left_ptr_watch progress
 left_side left-arrow
 link alias
 move dnd-move
-n-resize size-size_ver
+n-resize size_ver
 no-drop not-allowed
 plus cell
 pointing_hand pointer
