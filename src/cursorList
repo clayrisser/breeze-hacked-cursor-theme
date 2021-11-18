@@ -46,6 +46,8 @@ left_ptr default
 left_ptr_help help
 left_ptr_watch progress
 left_side left-arrow
+ll_angle bottom_left_corner
+lr_angle bottom_right_corner
 link alias
 move dnd-move
 n-resize size-size_ver
@@ -59,6 +61,10 @@ row-resize size_ver
 s-resize size_ver
 sb_h_double_arrow size_hor
 sb_v_double_arrow size_ver
+sb_up_arrow up-arrow
+sb_down_arrow down-arrow
+sb_left_arrow left-arrow
+sb_right_arrow right-arrow
 size_all fleur
 split_h col-resize
 split_v row-resize
@@ -89,6 +95,8 @@ size-hor default
 size-ver default
 text default
 up-arrow default
+ul_angle top_left_corner
+ur_angle top_right_corner
 wait default
 x-cursor default
 wayland-cursor default
