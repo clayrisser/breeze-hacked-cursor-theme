@@ -1,2 +1,4 @@
 24 16 4 x1/pointer.png
 48 32 8 x2/pointer.png
+96 64 16 x4/pointer.png
+192 128 32 x8/pointer.png

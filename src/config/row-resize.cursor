@@ -1,2 +1,4 @@
 24 16 16 x1/row-resize.png
 48 32 32 x2/row-resize.png
+96 64 64 x4/row-resize.png
+192 128 128 x8/row-resize.png

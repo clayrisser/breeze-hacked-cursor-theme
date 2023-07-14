@@ -1,2 +1,4 @@
 24 4 4 x1/default.png
 48 8 8 x2/default.png
+96 16 16 x4/default.png
+192 32 32 x8/default.png

@@ -1,2 +1,4 @@
 24 16 16 x1/size_hor.png
 48 32 32 x2/size_hor.png
+96 64 64 x4/size_hor.png
+192 128 128 x8/size_hor.png

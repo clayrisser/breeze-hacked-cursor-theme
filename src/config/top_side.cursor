@@ -1,2 +1,4 @@
 24 16 4 x1/top_side.png
 48 32 8 x2/top_side.png
+96 64 16 x4/top_side.png
+192 128 32 x8/top_side.png

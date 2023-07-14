@@ -1,2 +1,4 @@
 24 16 16 x1/cell.png
 48 32 32 x2/cell.png
+96 64 64 x4/cell.png
+192 128 128 x8/cell.png
