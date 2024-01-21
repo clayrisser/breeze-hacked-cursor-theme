@@ -15,6 +15,7 @@ Please &#9733; this repo if you found it useful &#9733; &#9733; &#9733;
 
 * Compatible with most Linux window managers
 * Animated cursors
+* [Supports custom color schemes](#Recoloring)
 
 
 ## Installation
@@ -23,6 +24,18 @@ Please &#9733; this repo if you found it useful &#9733; &#9733; &#9733;
 make install
 ```
 
+## Recoloring
+
+Before building and installing, run the following:
+```sh
+# Replace values with hex codes of desired colors
+./recolor-cursor.sh --accent-color "#012345" --base-color "#6789ab" --border-color "#cdef10" --logo-color "#111213"
+```
+
+For more information, run the following:
+```sh
+./recolor-cursor.sh --help
+```
 
 ## Dependencies
 
