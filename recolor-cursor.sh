@@ -102,7 +102,8 @@ declare -r SVG_PATH
 sed -i "s/$DEFAULT_ACCENT_COLOR/$accent_color/g; \
         s/$DEFAULT_BASE_COLOR/$base_color/g; \
         s/$DEFAULT_BORDER_COLOR/$border_color/g; \
-        s/($DEFAULT_WAYLAND_LOGO_COLOR|$DEFAULT_X_LOGO_COLOR)/$logo_color/g;" \
+        s/$DEFAULT_WAYLAND_LOGO_COLOR/$logo_color/g; \
+        s/$DEFAULT_X_LOGO_COLOR/$logo_color/g;" \
   "$SVG_PATH"
 
 echo "Successfully recolored $SVG_PATH"
