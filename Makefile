@@ -18,4 +18,4 @@ build: Breeze_Hacked
 	@echo ::: CLEAN :::
 
 Breeze_Hacked:
-	@./build.sh
+	@./build.py
