@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from pathlib import Path
 from shutil import which, copy
 from subprocess import Popen, DEVNULL, PIPE
@@ -77,11 +78,20 @@ for cursor in cursorpositions:
             name = nametemplate.format(i + 1)
             outfile = scaledir / f"{name}.png"
             picprocs.append(
-                Popen(["inkscape", SVG.as_posix(), "-i", name, "-d", f"{dpi * scale}", "-o", outfile.as_posix()], stderr=DEVNULL)
+                Popen([
+                    "inkscape",
+                    SVG.as_posix(),
+                    "-i", name,
+                    "-d", f"{dpi * scale:f}",
+                    "-o", outfile.as_posix()],
+                    stderr=PIPE,
+                    env={"SELF_CALL":"AAAAH"}
+                )
             )
 
 for p in picprocs:
-    p.wait()
+    if p.wait() != 0:
+        print(p.returncode, p.stderr.read())
 
 print("\033[0KGenerating cursor pixmaps... DONE")
 
