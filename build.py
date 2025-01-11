@@ -2,6 +2,7 @@
 from pathlib import Path
 from shutil import which, copy
 from subprocess import Popen, DEVNULL, PIPE
+from os import environ
 
 src = Path("src")
 size=24 # size at 1x scale
@@ -85,7 +86,7 @@ for cursor in cursorpositions:
                     "-d", f"{dpi * scale:f}",
                     "-o", outfile.as_posix()],
                     stderr=PIPE,
-                    env={"SELF_CALL":"AAAAH"}
+                    env={**environ, "SELF_CALL":"AAAAH"} # this is a workaround to run inkscape in parallel
                 )
             )
 
