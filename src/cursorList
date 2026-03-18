@@ -35,7 +35,10 @@ dnd-none dnd-move
 dnd-no-drop not-allowed
 draft pencil
 e-resize size_hor
+ew-resize size_hor
 forbidden no-drop
+grab openhand
+grabbing closedhand
 h_double_arrow size_hor
 half-busy progress
 hand1 pointer
@@ -51,6 +54,11 @@ lr_angle bottom_right_corner
 link alias
 move dnd-move
 n-resize size_ver
+ne-resize size_bdiag
+nesw-resize size_bdiag
+ns-resize size_ver
+nw-resize size_fdiag
+nwse-resize size_fdiag
 no-drop not-allowed
 plus cell
 pointing_hand pointer
@@ -59,6 +67,8 @@ right_ptr default
 right_side right-arrow
 row-resize size_ver
 s-resize size_ver
+se-resize size_fdiag
+sw-resize size_bdiag
 sb_h_double_arrow size_hor
 sb_v_double_arrow size_ver
 sb_up_arrow up-arrow
