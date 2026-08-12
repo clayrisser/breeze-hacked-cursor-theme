@@ -1,109 +1,98 @@
-#!/usr/bin/env bash
+#!/bin/sh
+# Recolors the Breeze Hacked cursor theme's source SVG in place.
 
-# Safety options
-set -o errtrace \
-  -o errexit \
-  -o nounset \
-  -o xtrace \
-  -o pipefail
+set -eu
 
-readonly DEFAULT_ACCENT_COLOR="#79f5f3"       # Cyan accents
-readonly DEFAULT_BASE_COLOR="#192629"         # Dark filled-in spots
-readonly DEFAULT_BORDER_COLOR="#666666"       # grey border
-readonly DEFAULT_WAYLAND_LOGO_COLOR="#ffffff" # white W in Wayland logo
-readonly DEFAULT_X_LOGO_COLOR="#fcfcfc"       # white X in X logo
+default_accent_color="#79f5f3"       # cyan accents
+default_base_color="#192629"         # dark filled-in spots
+default_border_color="#666666"       # grey border
+default_wayland_logo_color="#ffffff" # white W in the Wayland logo
+default_x_logo_color="#fcfcfc"       # white X in the X logo
 
 print_usage() {
   cat <<EOF
-    $(basename "$0") -- script for recoloring the Breeze Hacked cursor theme's source svg file
-  
-    USAGE:
-      ./$(basename "$0") [OPTIONS]
+$(basename "$0") -- recolor the Breeze Hacked cursor theme's source svg file
 
-    OPTIONS:
-      --help                          Print this message
-      --accent-color <hex code>       Recolor the cyan accents
-      --base-color <hex code>         Recolor the dark background
-      --border-color <hex code>       Recolor the grey border
-      --logo-color <hex code>         Recolor the X in the X logo cursor and the W in the Wayland logo cursor
+USAGE:
+  ./$(basename "$0") [OPTIONS]
 
-      <hex code>                      A hex code representing a color beginning with a pound sign
+OPTIONS:
+  --help                          Print this message
+  --accent-color <hex code>       Recolor the cyan accents
+  --base-color <hex code>         Recolor the dark background
+  --border-color <hex code>       Recolor the grey border
+  --logo-color <hex code>         Recolor the X in the X logo cursor and the W
+                                  in the Wayland logo cursor
+
+  <hex code>                      A hex code representing a color beginning
+                                  with a pound sign
 EOF
 }
 
-invalid_input() {
-  echo "invalid option: ${1}"
-  print_usage
-  exit 1
-}
-
 validate_hex_code() {
-  if ! [[ "$1" =~ \#[[:xdigit:]]{6} ]]; then
-    echo "invalid input: ${1}"
-    echo "input must be a valid hex code beginning with a pound sign"
-    exit 1
-  fi
-}
-
-# Parse options
-while getopts ":h-:" optchar; do
-  case "$optchar" in
-  h)
-    print_usage
-    exit
-    ;;
-  -)
-    case "$OPTARG" in
-    help)
-      print_usage
-      exit
-      ;;
-    accent-color)
-      validate_hex_code "${!OPTIND}"
-      accent_color="${!OPTIND}"
-      ;;
-    base-color)
-      validate_hex_code "${!OPTIND}"
-      base_color="${!OPTIND}"
-      ;;
-    border-color)
-      validate_hex_code "${!OPTIND}"
-      border_color="${!OPTIND}"
-      ;;
-    logo-color)
-      validate_hex_code "${!OPTIND}"
-      logo_color="${!OPTIND}"
-      ;;
-    *)
-      invalid_input "${OPTARG}"
-      ;;
-    esac
-    ;;
+  case "${1:-}" in
+  '#'[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]) ;;
   *)
-    invalid_input "${OPTARG}"
+    printf 'invalid input: %s\n' "${1:-<missing>}" >&2
+    echo 'input must be a valid hex code beginning with a pound sign' >&2
+    exit 1
     ;;
   esac
+}
 
-  # Every valid option except for --help takes a value
-  # skip it so it is not treated like a flag
-  OPTIND=$((OPTIND + 1))
+accent_color=$default_accent_color
+base_color=$default_base_color
+border_color=$default_border_color
+wayland_logo_color=$default_wayland_logo_color
+x_logo_color=$default_x_logo_color
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+  -h | --help)
+    print_usage
+    exit 0
+    ;;
+  --accent-color)
+    shift
+    validate_hex_code "${1:-}"
+    accent_color=$1
+    ;;
+  --base-color)
+    shift
+    validate_hex_code "${1:-}"
+    base_color=$1
+    ;;
+  --border-color)
+    shift
+    validate_hex_code "${1:-}"
+    border_color=$1
+    ;;
+  --logo-color)
+    shift
+    validate_hex_code "${1:-}"
+    wayland_logo_color=$1
+    x_logo_color=$1
+    ;;
+  *)
+    printf 'invalid option: %s\n' "$1" >&2
+    print_usage >&2
+    exit 1
+    ;;
+  esac
+  shift
 done
 
-readonly accent_color=${accent_color:-$DEFAULT_ACCENT_COLOR}
-readonly base_color=${base_color:-$DEFAULT_BASE_COLOR}
-readonly border_color=${border_color:-$DEFAULT_BORDER_COLOR}
-readonly logo_color=${logo_color:-$DEFAULT_WAYLAND_LOGO_COLOR}
+svg_path="$(dirname -- "$0")/src/cursors.svg"
 
-# Declared and assigned separately to avoid masking return values
-SVG_PATH="$(dirname "$0")/src/cursors.svg"
-declare -r SVG_PATH
+# POSIX sed has no -i; write to a temp file and move it into place.
+tmp=$(mktemp)
+sed \
+  -e "s/$default_accent_color/$accent_color/g" \
+  -e "s/$default_base_color/$base_color/g" \
+  -e "s/$default_border_color/$border_color/g" \
+  -e "s/$default_wayland_logo_color/$wayland_logo_color/g" \
+  -e "s/$default_x_logo_color/$x_logo_color/g" \
+  "$svg_path" >"$tmp"
+mv "$tmp" "$svg_path"
 
-# Recolor
-sed -i "s/$DEFAULT_ACCENT_COLOR/$accent_color/g; \
-        s/$DEFAULT_BASE_COLOR/$base_color/g; \
-        s/$DEFAULT_BORDER_COLOR/$border_color/g; \
-        s/$DEFAULT_WAYLAND_LOGO_COLOR/$logo_color/g; \
-        s/$DEFAULT_X_LOGO_COLOR/$logo_color/g;" \
-  "$SVG_PATH"
-
-echo "Successfully recolored $SVG_PATH"
+echo "Successfully recolored $svg_path"
