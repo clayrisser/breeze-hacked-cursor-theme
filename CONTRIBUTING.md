@@ -6,8 +6,9 @@ appreciated. This document contains everything needed to get started with your f
 
 ## Contributing Code
 
-We keep the source code on [GitHub](https://www.github.com) and take contributions through
-[GitHub pull requests](https://help.github.com/articles/using-pull-requests).
+We keep the source code on
+[GitLab](https://gitlab.com/bitspur/misc/breeze-hacked-cursor-theme) and take contributions
+through [GitLab merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/).
 
 For smaller patches and bug fixes just go ahead and either report an issue or submit a pull
 request.
@@ -23,14 +24,14 @@ put at the root of the repository.
 We follow [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html) as our git workflow of
 choice which boils down to:
 
-* The `master` branch is always stable and deployable.
-* To work on something new, branch off `master` and give the new branch a descriptive name (e.g.:
+* The `main` branch is always stable and deployable.
+* To work on something new, branch off `main` and give the new branch a descriptive name (e.g.:
   `sort-packages-by-name`, `issue-32`, etc).
-* Regularly __rebase__ that branch against `master` and push your work to a branch with the same
+* Regularly __rebase__ that branch against `main` and push your work to a branch with the same
   name on the server.
 * When you need feedback, help or think you are ready,
-  [submit a pull request](https://help.github.com/articles/using-pull-requests).
-* Once the branch has been merged (or rebased) into `master`, delete it from both your local and
+  [submit a merge request](https://docs.gitlab.com/ee/user/project/merge_requests/).
+* Once the branch has been merged (or rebased) into `main`, delete it from both your local and
   remote repository.
 
 We invite you to follow

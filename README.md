@@ -1,9 +1,5 @@
 # breeze-hacked-cursor-theme
 
-[![Beerpay](https://beerpay.io/jamrizzi/breeze-hacked-cursor-theme/badge.svg?style=beer-square)](https://beerpay.io/jamrizzi/breeze-hacked-cursor-theme)
-[![Beerpay](https://beerpay.io/jamrizzi/breeze-hacked-cursor-theme/make-wish.svg?style=flat-square)](https://beerpay.io/jamrizzi/breeze-hacked-cursor-theme?focus=wish)
-[![GitHub stars](https://img.shields.io/github/stars/jamrizzi/breeze-hacked-cursor-theme.svg?style=social&label=Stars)](https://github.com/jamrizzi/breeze-hacked-cursor-theme)
-
 > Official cursor theme for Jam OS
 
 ![](assets/breeze-hacked-cursor-theme.png)
@@ -15,42 +11,73 @@ Please &#9733; this repo if you found it useful &#9733; &#9733; &#9733;
 
 * Compatible with most Linux window managers
 * Animated cursors
-* [Supports custom color schemes](#Recoloring)
+* HiDPI support (1x, 1.5x and 2x scales)
+* [Supports custom color schemes](#recoloring)
 
 
 ## Installation
 
 ```sh
-make install
+# system-wide (installs to /usr/local/share/icons)
+sudo make install
+
+# current user only (installs to ~/.local/share/icons)
+make install PREFIX=~/.local
 ```
+
+`install` honors `PREFIX` and `DESTDIR`, so packagers can stage the theme
+with `make install DESTDIR=/tmp/pkgroot PREFIX=/usr`. `make uninstall`
+removes it again.
+
+
+## Building
+
+Building renders `src/cursors.svg` with [Inkscape](https://inkscape.org) and
+assembles the cursors with
+[xcursorgen](https://www.x.org/archive/X11R7.7/doc/man/man1/xcursorgen.1.xhtml),
+so both must be installed:
+
+```sh
+make
+```
+
+On hosts without the render tools (e.g. macOS, where xcursorgen is not
+available), build inside a container instead:
+
+```sh
+make build/docker
+```
+
 
 ## Recoloring
 
 Before building and installing, run the following:
+
 ```sh
 # Replace values with hex codes of desired colors
 ./recolor-cursor.sh --accent-color "#012345" --base-color "#6789ab" --border-color "#cdef10" --logo-color "#111213"
 ```
 
 For more information, run the following:
+
 ```sh
 ./recolor-cursor.sh --help
 ```
 
-## Dependencies
 
-* [Inkscape](https://inkscape.org)
-* [xcursorgen](https://www.x.org/archive/X11R7.7/doc/man/man1/xcursorgen.1.xhtml)
+## Development
 
-
-## Usage
-
-[Contribute](https://github.com/jamrizzi/breeze-hacked-cursor-theme/blob/master/CONTRIBUTING.md) usage docs
+```sh
+make prepare  # install the pinned dev toolchain (shfmt, bats) via asdf
+make test     # run the bats test suite against the built theme
+make format   # format shell scripts
+make lint     # check shell script formatting
+```
 
 
 ## Support
 
-Submit an [issue](https://github.com/jamrizzi/breeze-hacked-cursor-theme/issues/new)
+Submit an [issue](https://gitlab.com/bitspur/misc/breeze-hacked-cursor-theme/-/issues/new)
 
 
 ## Screenshots
@@ -60,17 +87,17 @@ Submit an [issue](https://github.com/jamrizzi/breeze-hacked-cursor-theme/issues/
 
 ## Contributing
 
-Review the [guidelines for contributing](https://github.com/jamrizzi/breeze-hacked-cursor-theme/blob/master/CONTRIBUTING.md)
+Review the [guidelines for contributing](CONTRIBUTING.md)
 
 
 ## License
 
-[GPL 2.0 License](https://github.com/jamrizzi/breeze-hacked-cursor-theme/blob/master/LICENSE)
+[GPL 2.0 License](LICENSE)
 
 
 ## Changelog
 
-Review the [changelog](https://github.com/jamrizzi/breeze-hacked-cursor-theme/blob/master/CHANGELOG.md)
+Review the [changelog](CHANGELOG.md)
 
 
 ## Credits
@@ -79,14 +106,4 @@ Review the [changelog](https://github.com/jamrizzi/breeze-hacked-cursor-theme/bl
 * Hugo Pereira Da Costa <hugo.pereira@free.fr> - Kstyle Developer
 * Andrew Lake <jamboarder@gmail.com> - Kstyle Designer
 * Uri Herrera <kaisergreymon99@gmail.com> - Breeze Icon Theme
-* [Jam Risser](https://jam.jamrizzi.com) <jam@jamrizzi.com> - Contributor
-
-
-## Support on Beerpay (actually, I drink coffee)
-
-A ridiculous amount of coffee :coffee: :coffee: :coffee: was consumed in the process of building this project.
-
-[Add some fuel](https://beerpay.io/jamrizzi/breeze-hacked-cursor-theme) if you'd like to keep me going!
-
-[![Beerpay](https://beerpay.io/jamrizzi/breeze-hacked-cursor-theme/badge.svg?style=beer-square)](https://beerpay.io/jamrizzi/breeze-hacked-cursor-theme)
-[![Beerpay](https://beerpay.io/jamrizzi/breeze-hacked-cursor-theme/make-wish.svg?style=flat-square)](https://beerpay.io/jamrizzi/breeze-hacked-cursor-theme?focus=wish)
+* [Clay Risser](https://clayrisser.com) - Contributor
